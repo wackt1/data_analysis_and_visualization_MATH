@@ -1,0 +1,19 @@
+﻿* Encoding: UTF-8.
+
+WEIGHT BY weight.
+
+DATASET ACTIVATE DataSet1.
+RELIABILITY
+  /VARIABLES=Q8.3_1 Q8.4_1
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /SUMMARY=TOTAL.
+
+COMPUTE Selbsteinschaetzung_Kompetenz=MEAN(Q8.3_1,Q8.4_1).
+EXECUTE.
+
+NONPAR CORR
+    /VARIABLES=Selbsteinschaetzung_Kompetenz Q11.2_numeric
+    /PRINT=SPEARMAN TWOTAIL NOSIG FULL
+    /MISSING=PAIRWISE.
+
